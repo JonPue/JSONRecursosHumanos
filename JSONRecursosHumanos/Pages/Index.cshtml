@@ -1,0 +1,97 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+    <script>
+    function Get_Datos(idEmpleado){
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200){
+                employees = JSON.parse(this.responseText);
+
+                var emp=employees[idEmpleado]
+                document.getElementById("data").innerHTML +="<p>" + ("ID: ") + emp.ID + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Nombre: ") + emp.FirstName + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Segundo nombre: ") + emp.MiddleName + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Apellido: ") + emp.LastName + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Apodo: ") + emp.NameSuffix + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Nombre para mostrar: ") + emp.DisplayName + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Numero personal: ") + emp.PersonNumber + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Codigo del pais del telefono: ") +  emp.WorkPhoneCountryCode + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Codigo del are del movil: ") + emp.WorkPhoneAreaCode + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Numero de telefono del trabajo: ") + emp.WorkPhoneNumber + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Numero de movil del trabajo: ") + emp.WorkMobilePhoneNumber + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Numero de telefono de casa: ") + emp.HomePhoneNumber + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Codigo del pais del fax: ") + emp.HomeFaxCountryCode + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Codigo de la zona del fax: ") + emp.HomeFaxAreaCode + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Numero de fax: ") + emp.HomeFaxNumber + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Email trabajo: ") +  emp.WorkEmail + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Direccion: ") + emp.AddressLine1 + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Region: ") + emp.Region + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Pais: ") + emp.Country + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Codigo postal: ") + emp.PostalCode + "</p>";
+                document.getElementById("data").innerHTML +="<p>" + ("Fecha nacimiento: ") + emp.DateOfBirth + "</p>";
+                document.getElementById("data").innerHTML +="<br/>";
+
+
+                console.log(employees);
+                /*
+                employees.forEach(function (el){
+                    document.getElementById("data").innerHTML +="<p>" + el.ID + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.FirstName + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.MiddleName + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.LastName + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.NameSuffix + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.DisplayName + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.PersonNumber + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.WorkPhoneCountryCode + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.WorkPhoneAreaCode + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.WorkPhoneNumber + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.WorkMobilePhoneNumber + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.HomePhoneNumber + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.HomeFaxCountryCode + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.HomeFaxAreaCode + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.HomeFaxNumber + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.WorkEmail + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.AddressLine1 + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.GenAddressLine2der + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.Region + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.Country + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.PostalCode + "</p>";
+                    document.getElementById("data").innerHTML +="<p>" + el.DateOfBirth + "</p>";
+                    document.getElementById("data").innerHTML +="<br/>";
+                });
+
+                */
+            }
+        }
+
+            xmlhttp.open("GET","data/empleados.json", true); //ABRIMOS CONEXION PARA OBTENER DATOS
+            xmlhttp.send(); //ENVIAMOS DATOS
+    }
+    </script>
+
+
+    <div id="data"></div>
+    <a href="javascript:Get_Datos(0);">Empleado con Id 1</a>
+    <br>
+    <br>
+    <a href="javascript:Get_Datos(1);">Empleado con Id 2</a>
+    <br>
+    <br>
+    <a href="javascript:Get_Datos(2);">Empleado con Id 3</a>
+    <br>
+    <br>
+    <a href="javascript:Get_Datos(3);">Empleado con Id 4</a>
+    <br>
+    <br>
+    <a href="javascript:Get_Datos(4);">Empleado con Id 5</a>
+    
+       
+        <!--Introduce el ID del usuario: <input type="number" id="userid">
+     
+        <button onclick="Get_Datos()">Buscar</button>-->
